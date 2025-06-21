@@ -1,19 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom'; // For navigation and links
-import './distination.css'; // Assuming distination.css is in src/comps
+import { Link, useNavigate } from 'react-router-dom'; 
+import './distination.css'; 
 
 function DestinationSearch() {
   const [selectedDestination, setSelectedDestination] = useState('');
   const navigate = useNavigate();
 
-  // This effect would mimic the test.js behavior if you wanted to auto-update the button link
-  // However, for React Router, it's often better to just navigate on button click.
-  // useEffect(() => {
-  //   if (selectedDestination) {
-  //     // You could set a dynamic link here if you had complex logic,
-  //     // but for simple navigation, the button click handler is more direct.
-  //   }
-  // }, [selectedDestination]);
+
 
   const handleSearchClick = () => {
     if (selectedDestination) {

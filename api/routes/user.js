@@ -10,9 +10,9 @@ const isAuth = require('../middleware/passport');
 
 router.post('/register', async (req, res) => {
     const {email, password} = req.body;
-
+    console.log("mrigl")
     try {
-        const searchedUser = User.findOne({email: email})
+        const searchedUser = await User.findOne({email: email})
         if(searchedUser){
             return res.send({error: "email exist"})
         }
@@ -89,7 +89,7 @@ router.get('/offer/:id', async(req, res) => {
 
 router.post('/accept/:id', async(req, res) => {
     try {
-        const offer = await Offer.findById(id);
+        const offer = await Offer.findById(req.params.id);
         offer.status = 'accepted';
 
         await offer.save();
@@ -102,13 +102,13 @@ router.post('/accept/:id', async(req, res) => {
 
 router.post('/reject/:id', async(req, res) => {
     try {
-        const offer = await Offer.findById(id);
-        offer.status = 'Rejected';
+        const offer = await Offer.findById(req.params.id);
+        offer.status = 'rejected';
 
         await offer.save();
         res.send('mrigl')
     } catch (error) {
-        
+        console.log(error)
     }
 })
 

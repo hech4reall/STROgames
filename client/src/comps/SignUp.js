@@ -1,92 +1,102 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; // Import Link for login link
-import './compte.css'; // Make sure this CSS file is in src/comps
+import { useState, useEffect } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { registerUser, clearError } from "../redux/slices/authSlice" // Corrected path
+import "./compte.css"
 
 function SignUp() {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [passwordsMatchError, setPasswordsMatchError] = useState("")
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { loading, error, isAuthenticated } = useSelector((state) => state.auth)
+
+  useEffect(() => {
+    // Clear previous errors when component mounts
+    dispatch(clearError())
+  }, [dispatch])
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/acceuil") // Navigate to home on successful registration
+    }
+  }, [isAuthenticated, navigate])
 
   const handleSubmit = (event) => {
-    event.preventDefault();
+    event.preventDefault()
+    setPasswordsMatchError("")
+    dispatch(clearError())
 
     if (password !== confirmPassword) {
-      setError("Passwords do not match.");
-      return;
+      setPasswordsMatchError("Les mots de passe ne correspondent pas.")
+      return
     }
-
-    console.log('Sign Up Data:', { username, email, password });
-    setError('');
-    alert('Sign Up attempted (check console)!'); // Indicate a mock action
-    // In a real app, you would typically send formData to your backend here.
-  };
+    dispatch(registerUser({ email, password }))
+  }
 
   return (
-    <>
-      <header className="navbar">
-        <div className="logo">SOTREGAMES</div>
+    <div className="auth-container">
+      <header className="auth-navbar">
+        <Link to="/acceuil" className="logo-text">
+          SOTREGAMES
+        </Link>
       </header>
-      <h1>sign up</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">username:</label>
-          <input
-            type="text"
-            id="username"
-            name="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
-        </div>
+      <div className="auth-form-wrapper">
+        <h1>Inscription</h1>
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="form-group">
+            <label htmlFor="email">Email :</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="exemple@domaine.com"
+            />
+          </div>
 
-        <div>
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
+          <div className="form-group">
+            <label htmlFor="password">Mot de passe :</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              placeholder="Minimum 6 caractères"
+            />
+          </div>
 
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            name="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="confirm-password">Confirm Password:</label>
-          <input
-            type="password"
-            id="confirm-password"
-            name="confirm-password"
-            value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
-            required
-          />
-        </div>
-
-        <div>
-          <button type="submit">Sign Up</button>
-        </div>
-        {error && <div style={{ color: 'red' }}>{error}</div>}
-      </form>
-
-      <p>Already have an account? <Link to="/login">Log in</Link></p>
-    </>
-  );
+          <div className="form-group">
+            <label htmlFor="confirm-password">Confirmer le mot de passe :</label>
+            <input
+              type="password"
+              id="confirm-password"
+              name="confirm-password"
+              value={confirmPassword}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              required
+              placeholder="Retapez votre mot de passe"
+            />
+          </div>
+          {passwordsMatchError && <div className="error-message">{passwordsMatchError}</div>}
+          {error && <div className="error-message">{error}</div>}
+          <button type="submit" className="auth-button" disabled={loading}>
+            {loading ? "Inscription en cours..." : "S'inscrire"}
+          </button>
+        </form>
+        <p className="auth-switch-link">
+          Déjà un compte ? <Link to="/login">Connectez-vous</Link>
+        </p>
+      </div>
+    </div>
+  )
 }
 
-export default SignUp;
+export default SignUp

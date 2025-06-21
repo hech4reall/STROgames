@@ -1,50 +1,82 @@
-import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import './compte.css'; // Assuming compte.css is in src/comps
+import { useState, useEffect } from "react"
+import { Link, useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
+import { loginUser, clearError } from "../redux/slices/authSlice" // Corrected path
+import "./compte.css"
 
 function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-  const navigate = useNavigate();
+  const [email, setEmail] = useState("")
+  const [password, setPassword] = useState("")
+
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+  const { loading, error, isAuthenticated, user } = useSelector((state) => state.auth)
+
+  useEffect(() => {
+    // Clear previous errors when component mounts or email/password changes
+    dispatch(clearError())
+  }, [dispatch])
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      if (user?.role === "admin") {
+        navigate("/admin-dashboard")
+      } else {
+        navigate("/acceuil")
+      }
+    }
+  }, [isAuthenticated, user, navigate])
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError(''); // Clear previous errors
-
-    // --- API fetch logic ignored as requested ---
-    // In a real app, you'd send username and password to your backend
-    console.log('Login attempt:', { username, password });
-
-    // Mock login success/failure
-    if (username === 'test' && password === 'password') {
-      console.log('Login successful (mock)');
-      navigate('/acceuil'); // Navigate to home on success
-    } else {
-      setError('Invalid username or password.');
-    }
-  };
+    e.preventDefault()
+    dispatch(loginUser({ email, password }))
+  }
 
   return (
-    <>
-      <header className="navbar">
-        <div className="logo">SOTREGAMES</div>
+    <div className="auth-container">
+      <header className="auth-navbar">
+        <Link to="/acceuil" className="logo-text">
+          SOTREGAMES
+        </Link>
       </header>
-      <h1>log in</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label htmlFor="username">username:</label>
-          <input type="text" id="username" name="username" value={username} onChange={(e) => setUsername(e.target.value)} required />
-        </div>
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input type="password" id="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} required />
-        </div>
-        <button type="submit">log in</button>
-        {error && <div style={{ color: 'red' }}>{error}</div>}
-      </form>
-    </>
-  );
+      <div className="auth-form-wrapper">
+        <h1>Connexion</h1>
+        <form onSubmit={handleSubmit} className="auth-form">
+          <div className="form-group">
+            <label htmlFor="email">Email :</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+              placeholder="exemple@domaine.com"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password">Mot de passe :</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              placeholder="Votre mot de passe"
+            />
+          </div>
+          {error && <div className="error-message">{error}</div>}
+          <button type="submit" className="auth-button" disabled={loading}>
+            {loading ? "Connexion en cours..." : "Se connecter"}
+          </button>
+        </form>
+        <p className="auth-switch-link">
+          Pas encore de compte ? <Link to="/compte">Inscrivez-vous</Link>
+        </p>
+      </div>
+    </div>
+  )
 }
 
-export default Login;
+export default Login

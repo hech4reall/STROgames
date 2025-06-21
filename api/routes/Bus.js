@@ -47,28 +47,28 @@ router.get('/', async(req, res) => {
         console.log(error)
     }
 })
-
 router.patch('/approve/:prix/:id', async(req, res) => {
     const id = req.params.id;
     const prix = req.params.prix;
     try {
-        const booked = await BusBooking.findByIdAndUpdate(id, {status: 'approved'}, {new: true});
+        const booked = await BusBooking.findById(id);
         const bookedUser = await User.findById(booked.userId);
-
-        booked.status = "approved";
-        await booked.save();
+    
         const newOffer = new Offer({
             userId: bookedUser._id,
-            prix: prix
-        })
-
-        newOffer.save();
+            prix: prix,
+            bookingId: id
+        });
+        await newOffer.save();
+    
+        await BusBooking.findByIdAndDelete(id);
         
-        res.send("mrigl")
+        res.send("Approved and converted to offer");
     } catch (error) {
-        console.log(error)
+      console.log(error);
+      res.status(500).send("Server error");
     }
-});
+  });
 
 router.patch('/reject/:id', async(req, res) => {
     const id = req.params.id;
@@ -92,12 +92,16 @@ router.patch('/reject/:id', async(req, res) => {
 
 router.get('/offers', async(req, res) => {
     try {
-        const offers = await Offer.find();
-        res.send(offers);
+      const offers = await Offer.find()
+        .populate('userId', 'email')
+        .exec();
+        
+      res.send(offers);
     } catch (error) {
-        console.log(error)
+      console.log(error);
+      res.status(500).send("Server error");
     }
-})
+  });
 
 router.delete('/offer/:id', async(req, res) => {
     try {

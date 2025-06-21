@@ -1,100 +1,137 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family:  Arial, ;
-  
+/* General styles for auth pages (Login, SignUp) */
+.auth-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f0f4f8; /* Light blue-gray background */
 }
 
-.logo {
-  font-size: 2.2rem;
-  font-weight: bold;
-  color: white;
-  position: static;
-  margin: 0;
-  text-align: left;
-  letter-spacing: 2px;
-}
-
-.navbar {
+.auth-navbar {
   display: flex;
   align-items: center;
-  background: darkblue;
+  background-color: #0d47a1; /* Consistent navbar blue */
   color: white;
-  padding: 1rem 2rem;
-  height: 64px;
+  padding: 1rem 2.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+.auth-navbar .logo-text {
+  /* Ensure logo text styling is applied */
+  font-size: 1.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: #ffca28; /* Accent color for logo */
+  text-decoration: none;
+}
+
+.auth-form-wrapper {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem 1rem;
+}
+
+.auth-form-wrapper h1 {
   text-align: center;
-  color: grey;
-  margin-bottom: 24px;
+  color: #1e3a5f; /* Darker blue for heading */
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  font-weight: 600;
 }
 
-form {
+.auth-form {
   background: white;
   max-width: 400px;
+  width: 100%;
   margin: 0 auto;
-  padding: 32px 24px 24px 24px;
-  border-radius: 16px;
+  padding: 2.5rem 2rem; /* Increased padding */
+  border-radius: 12px; /* More rounded corners */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Softer shadow */
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 1.5rem; /* Increased gap between form groups */
 }
 
-form div {
+.form-group {
+  /* Re-styling form-group for auth forms */
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 0.5rem; /* Space between label and input */
 }
 
-label {
-  font-size: 1rem;
-  color: #34495e;
-  margin-bottom: 2px;
+.form-group label {
+  font-size: 0.95rem; /* Slightly smaller label */
+  color: #334155; /* Dark gray for labels */
+  font-weight: 500;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="password"] {
-  padding: 10px 12px;
-  border: 1px solid grey;
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  padding: 0.8rem 1rem; /* Comfortable padding */
+  border: 1px solid #cbd5e1; /* Lighter border */
   border-radius: 6px;
   font-size: 1rem;
-  background: white;
-  transition: border 0.2s;
+  background-color: #f8fafc; /* Very light background for inputs */
+  transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-input[type="text"]:focus,
-input[type="email"]:focus,
-input[type="password"]:focus {
-  border: 1.5px solid #2d9cdb;
+.form-group input[type="text"]:focus,
+.form-group input[type="email"]:focus,
+.form-group input[type="password"]:focus {
+  border-color: #2563eb; /* Blue border on focus */
   outline: none;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); /* Focus ring */
 }
 
-button[type="submit"] {
-  background: darkblue;
+.auth-button {
+  /* Specific button styling for auth forms */
+  background-color: #1e88e5; /* Primary blue for button */
   color: white;
   border: none;
   border-radius: 6px;
-  padding: 12px 0;
-  font-size: 1.1rem;
+  padding: 0.9rem 0; /* Comfortable padding */
+  font-size: 1.05rem;
   font-weight: 600;
   cursor: pointer;
-  margin-top: 10px;
-  transition: background 0.2s;
+  margin-top: 1rem; /* Space above button */
+  transition: background-color 0.2s ease-in-out;
 }
 
-button[type="submit"]:hover {
-  background: blue;
+.auth-button:hover:not(:disabled) {
+  background-color: #1572c3; /* Darker blue on hover */
 }
 
-p {
+.auth-button:disabled {
+  background-color: #90caf9;
+  cursor: not-allowed;
+}
+
+.error-message {
+  color: #d32f2f; /* Red for errors */
+  background-color: #ffebee;
+  border: 1px solid #ef9a9a;
+  padding: 0.8rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
   text-align: center;
-  margin-top: 24px;
-  color:rgb(14, 14, 96);
 }
 
+.auth-switch-link {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: #475569; /* Gray for link text */
+  font-size: 0.95rem;
+}
 
-a:hover {
+.auth-switch-link a {
+  color: #1e88e5; /* Blue for link */
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.auth-switch-link a:hover {
   text-decoration: underline;
 }
