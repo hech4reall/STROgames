@@ -1,0 +1,106 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: white;
+  color: black;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: darkblue;
+  color: white;
+  padding: 1rem 2rem;
+}
+
+.logo {
+  font-size: 1.7rem;
+  font-weight: bold;
+  letter-spacing: 2px;
+  color: white;
+}
+
+.navbar nav ul {
+  list-style: none;
+  display: flex;
+  gap: 2rem;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar nav ul li a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.2s;
+}
+
+.navbar nav ul li a:hover {
+  color: whitesmoke;
+}
+
+.section {
+  margin: 4rem auto;
+  max-width: 400px;
+  background: white;
+  border-radius: 14px;
+  box-shadow: darkblue;
+  padding: 2.2rem 1.5rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.section h1 {
+  font-size: 1.3rem;
+  margin-bottom: 1.3rem;
+  color: darkblue;
+  font-weight: 600;
+}
+
+.barre-recherche {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.7rem;
+  background: white;
+  border-radius: 7px;
+  box-shadow: 0 1px 6px rgba(26,35,126,0.07);
+  padding: 0.7rem 1rem;
+  margin-top: 0.5rem;
+  border: 1px solid #e3e7f7;
+  width: 100%;
+  max-width: 400px;
+}
+
+.barre-recherche select.destination-select {
+  padding: 0.6rem 1rem;
+  border: 1px solid #bdbdbd;
+  border-radius: 5px;
+  font-size: 1rem;
+  background: white;
+  color: black;
+  min-width: 120px;
+}
+
+.barre-recherche select.destination-select:focus {
+  border: 1px solid darkblue;
+}
+
+.barre-recherche button {
+  padding: 0.6rem 1.1rem;
+  background: darkblue;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.barre-recherche button:hover {
+  background: darkblue;
+}

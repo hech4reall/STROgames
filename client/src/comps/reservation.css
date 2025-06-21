@@ -1,0 +1,58 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  background: white;
+  color: black;
+  min-height: 100vh;
+}
+
+h2 {
+  text-align: center;
+  color: #2d3e50;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+#reservation-details {
+  background: #fff;
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 2rem 2.5rem;
+  border-radius: 14px;
+  box-shadow: 0 4px 18px rgba(44, 62, 80, 0.10);
+  font-size: 1.1rem;
+  list-style: none;
+}
+
+#reservation-details li {
+  margin-bottom: 1.2rem;
+  padding-bottom: 0.7rem;
+  border-bottom: 1px solid #e3e7f7;
+}
+
+#reservation-details li:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+strong {
+  color: #2d3e50;
+}
+button[type="submit"] {
+  background: darkblue;
+  color: white;
+  border: none;
+  border-radius: 20px;
+  padding: 13px 0;
+  font-size: 1.1rem;
+  font-weight: 900;
+  cursor: pointer;
+  margin-top: 30px;
+  margin-left: 80px;
+  transition: background 1s;
+}
+
+button[type="submit"]:hover {
+  background: #217dbb;
+}
