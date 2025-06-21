@@ -1,18 +1,15 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
 
-const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:2000"
+const API_BASE_URL = process.env.REACT_APP_LINK
 
-// Async thunks
 export const createBusBooking = createAsyncThunk("bus/createBooking", async (bookingData, { rejectWithValue }) => {
   try {
-    // Ensure nbPlaces is an integer
     const dataToSend = {
       ...bookingData,
       nbPlaces: Number.parseInt(bookingData.nbPlaces, 10),
     }
     const response = await axios.post(`${API_BASE_URL}/book/`, dataToSend) // API endpoint from original code
-    // Assuming the backend returns the created booking object or a success message
     return (
       response.data.booking || {
         ...dataToSend,
@@ -21,7 +18,7 @@ export const createBusBooking = createAsyncThunk("bus/createBooking", async (boo
         createdAt: new Date().toISOString(),
         prix: null,
       }
-    ) // Fallback if backend only returns id
+    )
   } catch (error) {
     return rejectWithValue(error.response?.data?.error || error.response?.data?.message || "Failed to create booking")
   }

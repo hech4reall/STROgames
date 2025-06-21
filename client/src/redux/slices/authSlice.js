@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit"
 import axios from "axios"
 
-const API_BASE_URL = "http://localhost:2000"
+const API_BASE_URL = process.env.REACT_APP_LINK;
 
 // Async thunks
 export const registerUser = createAsyncThunk("auth/register", async ({ email, password }, { rejectWithValue }) => {
