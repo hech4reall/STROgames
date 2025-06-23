@@ -34,11 +34,6 @@ function Login() {
 
   return (
     <div className="auth-container">
-      <header className="auth-navbar">
-        <Link to="/acceuil" className="logo-text">
-          SOTREGAMES
-        </Link>
-      </header>
       <div className="auth-form-wrapper">
         <h1>Connexion</h1>
         <form onSubmit={handleSubmit} className="auth-form">

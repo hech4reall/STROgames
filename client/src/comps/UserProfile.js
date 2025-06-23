@@ -2,6 +2,9 @@ import { useEffect } from "react"
 import { useSelector, useDispatch } from "react-redux"
 import { getUserOffers, clearError, acceptUserOffer, rejectUserOffer } from "../redux/slices/authSlice"
 import "./UserProfile.css"
+import { Link, useNavigate } from "react-router-dom"
+import { logout } from "../redux/slices/authSlice"
+
 
 const UserProfile = () => {
   const dispatch = useDispatch()
@@ -24,6 +27,12 @@ const UserProfile = () => {
     dispatch(rejectUserOffer(offerId));
   }
 
+  const navigate = useNavigate()
+  const handleLogout = () => {
+    dispatch(logout())
+    navigate("/login")
+  }
+
   if (!isAuthenticated) {
     return (
       <div className="info-message">
@@ -43,6 +52,7 @@ const UserProfile = () => {
   }
 
   return (
+    <>    
     <div className="user-profile-container">
       <header className="profile-header">
         <h2>Bonjour, {user?.email} 👋</h2>
@@ -132,6 +142,7 @@ const UserProfile = () => {
         )}
       </section>
     </div>
+    </>
   )
 }
 

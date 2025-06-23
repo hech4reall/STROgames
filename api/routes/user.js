@@ -9,7 +9,7 @@ var jwt = require('jsonwebtoken');
 const isAuth = require('../middleware/passport');
 
 router.post('/register', async (req, res) => {
-    const {email, password} = req.body;
+    const {email, password, numero} = req.body;
     console.log("mrigl")
     try {
         const searchedUser = await User.findOne({email: email})
@@ -23,7 +23,8 @@ router.post('/register', async (req, res) => {
 
         let newUser = new User({
             email: email,
-            password: hashed_password
+            password: hashed_password,
+            numero
         });
 
         await newUser.save()
@@ -107,6 +108,36 @@ router.post('/reject/:id', async(req, res) => {
 
         await offer.save();
         res.send('mrigl')
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+
+router.get('/all', async(req, res) => {
+    try {
+        const users = await User.find();
+        res.send(users)
+    } catch (error) {
+        console.log(error)
+    }
+})
+
+
+router.patch('/:role/:id', async(req, res) => {
+    try {
+        await User.findByIdAndUpdate(req.params.id, {role: req.params.role}, {new : true})
+        res.send("done")        
+    } catch (error) {
+        console.log(error)
+    }
+});
+
+
+router.delete('/:id', async(req, res) => {
+    try {
+        await User.findByIdAndDelete(req.params.id)
+        res.send("done");
     } catch (error) {
         console.log(error)
     }

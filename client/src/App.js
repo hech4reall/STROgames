@@ -1,5 +1,3 @@
-"use client"
-
 import { useEffect } from "react"
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
@@ -16,7 +14,8 @@ import TicketBookingForm from "./comps/TicketBookingForm"
 import ReservationConfirm from "./comps/ReservationConfirm"
 import AdminDashboard from "./comps/AdminDashboard"
 import UserProfile from "./comps/UserProfile"
-
+import NavBar from "./comps/NavBar"
+import Users from "./comps/Users"
 import "./App.css"
 
 const ProtectedRoute = ({ children, roleRequired }) => {
@@ -44,61 +43,65 @@ function App() {
   }, [dispatch, token])
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Accueil />} />
-        <Route path="/acceuil" element={<Accueil />} />
-        <Route
-          path="/offre"
-          element={
-            <div>
-              <h1>Offres Page (Placeholder)</h1>
-            </div>
-          }
-        />
-        <Route path="/contact" element={<Contact />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/compte" element={<SignUp />} /> 
-        <Route path="/distination" element={<DestinationSearch />} />
-        <Route path="/reservation" element={<ReservationConfirm />} />
-        <Route path="/sfax" element={<TicketBookingForm destination="sfax" />} />
-        <Route path="/mednine" element={<TicketBookingForm destination="mednine" />} />
-        <Route path="/djerba" element={<TicketBookingForm destination="djerba" />} />
-        <Route path="/touzeur" element={<TicketBookingForm destination="touzeur" />} />
-        <Route
-          path="/pagep"
-          element={
-            <ProtectedRoute>
-              <BusLocationForm />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <ProtectedRoute>
-              <UserProfile />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="/admin-dashboard"
-          element={
-            <ProtectedRoute roleRequired="admin">
-              <AdminDashboard />
-            </ProtectedRoute>
-          }
-        />
-        <Route
-          path="*"
-          element={
-            <div style={{ textAlign: "center", marginTop: "50px" }}>
-              <h1>404 - Page Not Found</h1>
-            </div>
-          }
-        />
-      </Routes>
-    </Router>
+    <div>      
+      <Router>
+        <NavBar />
+        <Routes>
+          <Route path="/" element={<Accueil />} />
+          <Route path="/acceuil" element={<Accueil />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/compte" element={<SignUp />} /> 
+          <Route path="/distination" element={<DestinationSearch />} />
+          <Route path="/reservation" element={<ReservationConfirm />} />
+          <Route path="/sfax" element={<TicketBookingForm destination="sfax" />} />
+          <Route path="/mednine" element={<TicketBookingForm destination="mednine" />} />
+          <Route path="/djerba" element={<TicketBookingForm destination="djerba" />} />
+          <Route path="/touzeur" element={<TicketBookingForm destination="touzeur" />} />
+          <Route
+            path="/pagep"
+            element={
+              <ProtectedRoute>
+                <BusLocationForm />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <UserProfile />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin-dashboard"
+            element={
+              <ProtectedRoute roleRequired="admin">
+                <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/users"
+            element={
+              <ProtectedRoute roleRequired="admin">
+                <Users />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="*"
+            element={
+              <div style={{ textAlign: "center", marginTop: "50px" }}>
+                <h1>404 - Page Not Found</h1>
+              </div>
+            }
+          />
+        </Routes>
+      </Router>
+    </div>
+    
   )
 }
 

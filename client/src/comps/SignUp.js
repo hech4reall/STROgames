@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { registerUser, clearError } from "../redux/slices/authSlice" // Corrected path
+import { registerUser, clearError } from "../redux/slices/authSlice"
 import "./compte.css"
 
 function SignUp() {
   const [email, setEmail] = useState("")
+  const [numero, setNumero] = useState();
   const [password, setPassword] = useState("")
   const [confirmPassword, setConfirmPassword] = useState("")
   const [passwordsMatchError, setPasswordsMatchError] = useState("")
@@ -15,13 +16,12 @@ function SignUp() {
   const { loading, error, isAuthenticated } = useSelector((state) => state.auth)
 
   useEffect(() => {
-    // Clear previous errors when component mounts
     dispatch(clearError())
   }, [dispatch])
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/acceuil") // Navigate to home on successful registration
+      navigate("/acceuil")
     }
   }, [isAuthenticated, navigate])
 
@@ -34,16 +34,12 @@ function SignUp() {
       setPasswordsMatchError("Les mots de passe ne correspondent pas.")
       return
     }
-    dispatch(registerUser({ email, password }))
+    dispatch(registerUser({ email, password, numero }))
   }
 
   return (
     <div className="auth-container">
-      <header className="auth-navbar">
-        <Link to="/acceuil" className="logo-text">
-          SOTREGAMES
-        </Link>
-      </header>
+
       <div className="auth-form-wrapper">
         <h1>Inscription</h1>
         <form onSubmit={handleSubmit} className="auth-form">
@@ -57,6 +53,20 @@ function SignUp() {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="exemple@domaine.com"
+            />
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="numero">Numero de tel :</label>
+            <input
+              type="number"
+              id="numero"
+              name="numero"
+              value={numero}
+              maxLength={8}
+              onChange={(e) => setNumero(e.target.value)}
+              required
+              placeholder="12345678"
             />
           </div>
 
