@@ -17,6 +17,7 @@ import UserProfile from "./comps/UserProfile"
 import NavBar from "./comps/NavBar"
 import Users from "./comps/Users"
 import "./App.css"
+import AdminDestinations from "./comps/AdminDestinations"
 
 const ProtectedRoute = ({ children, roleRequired }) => {
   const { isAuthenticated, user } = useSelector((state) => state.auth)
@@ -87,6 +88,14 @@ function App() {
             element={
               <ProtectedRoute roleRequired="admin">
                 <Users />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/ligne"
+            element={
+              <ProtectedRoute roleRequired="admin">
+                <AdminDestinations />
               </ProtectedRoute>
             }
           />

@@ -1,0 +1,248 @@
+.dest-container {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f2f5; 
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    max-width: 900px;
+    margin: 30px auto;
+    color: #333;
+  }
+  
+  .dest-header {
+    background-color: #007bff; 
+    color: white;
+    padding: 15px 20px;
+    border-radius: 8px 8px 0 0;
+    margin: -20px -20px 20px -20px; 
+    text-align: center;
+  }
+  
+  .dest-header h1 {
+    margin: 0;
+    font-size: 1.8rem;
+    font-weight: 600;
+  }
+  
+  .dest-section {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  }
+  
+  .dest-section h2 {
+    color: #0056b3;
+    margin-top: 0;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+  }
+  
+  .dest-form {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  
+  .dest-input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 1px solid #ced4da;
+    border-radius: 6px;
+    font-size: 1rem;
+    color: #495057;
+    max-width: 350px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .dest-input:focus {
+    border-color: #80bdff;
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+  }
+  
+  .dest-button {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+    white-space: nowrap;
+  }
+  
+  .dest-button.primary {
+    background-color: #28a745; 
+    color: white;
+  }
+  
+  .dest-button.primary:hover {
+    background-color: #218838;
+    transform: translateY(-1px);
+  }
+  
+  .dest-button.delete {
+    background-color: #dc3545;
+    color: white;
+  }
+  
+  .dest-button.delete:hover {
+    background-color: #c82333;
+    transform: translateY(-1px);
+  }
+  
+  .dest-table-responsive {
+    overflow-x: auto; 
+  }
+  
+  .dest-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 15px;
+    background-color: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  }
+  
+  .dest-table th,
+  .dest-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #e9ecef;
+  }
+  
+  .dest-table th {
+    background-color: #f8f9fa;
+    color: #495057;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+  }
+  
+  .dest-table tbody tr:last-child td {
+    border-bottom: none;
+  }
+  
+  .dest-table tbody tr:hover {
+    background-color: #e2f0ff;
+  }
+  
+  .dest-actions-cell {
+    text-align: center;
+  }
+  
+
+  .dest-empty-state {
+    text-align: center;
+    color: #6c757d;
+    padding: 20px;
+    background-color: #e9ecef;
+    border-radius: 6px;
+    margin-top: 20px;
+  }
+  
+  .dest-loading-message,
+  .dest-error {
+    text-align: center;
+    padding: 20px;
+    font-size: 1.1rem;
+    color: #007bff;
+  }
+  
+  .dest-error {
+      color: #dc3545;
+      background-color: #f8d7da; 
+      border: 1px solid #f5c6cb;
+      border-radius: 5px;
+      margin-bottom: 20px;
+  }
+  
+  
+  .dest-loading-spinner {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #007bff;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+    margin: 20px auto;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  @media (max-width: 768px) {
+    .dest-container {
+      padding: 15px;
+      margin: 15px;
+    }
+  
+    .dest-header {
+      margin: -15px -15px 15px -15px;
+      padding: 10px 15px;
+    }
+  
+    .dest-header h1 {
+      font-size: 1.5rem;
+    }
+  
+    .dest-form {
+      flex-direction: column;
+      align-items: stretch;
+    }
+  
+    .dest-input {
+      max-width: 100%;
+    }
+  
+    .dest-table,
+    .dest-table tbody,
+    .dest-table tr,
+    .dest-table td,
+    .dest-table th {
+      display: block;
+    }
+  
+    .dest-table thead {
+      display: none;
+    }
+  
+    .dest-table tr {
+      margin-bottom: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 10px;
+    }
+  
+    .dest-table td {
+      border: none;
+      position: relative;
+      padding-left: 50%;
+      text-align: right;
+    }
+  
+    .dest-table td::before {
+      content: attr(data-label);
+      position: absolute;
+      left: 10px;
+      width: calc(50% - 20px);
+      padding-right: 10px;
+      white-space: nowrap;
+      text-align: left;
+      font-weight: bold;
+      color: #555;
+    }  
+
+    .dest-table td:nth-of-type(1)::before { content: "ID:"; }
+    .dest-table td:nth-of-type(2)::before { content: "Ville:"; }
+    .dest-table td:nth-of-type(3)::before { content: "Actions:"; }
+  }

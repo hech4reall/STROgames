@@ -5,6 +5,8 @@ const User = require('../models/user');
 const Offer = require('../models/offer')
 const bcrypt = require('bcrypt');
 
+const Destination = require('../models/destination')
+
 var jwt = require('jsonwebtoken');
 const isAuth = require('../middleware/passport');
 
@@ -142,6 +144,5 @@ router.delete('/:id', async(req, res) => {
         console.log(error)
     }
 })
-
 
 module.exports = router;

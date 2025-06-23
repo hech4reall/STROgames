@@ -1,15 +1,20 @@
-import { useState, useEffect } from "react"
-import { useSelector, useDispatch } from "react-redux"
-import { useNavigate } from "react-router-dom"
-import { createBusBooking, clearBusError, clearBusSuccess } from "../redux/slices/busSlice"
-import "./stylesp.css"
+import { useState, useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { createBusBooking, clearBusError, clearBusSuccess } from "../redux/slices/busSlice";
+import { fetchDestinations } from "../redux/slices/destinationsSlice"; // Import the fetch action
+import "./stylesp.css";
 
 function BusLocationForm() {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  const { user, isAuthenticated } = useSelector((state) => state.auth)
-  const { loading, error, successMessage } = useSelector((state) => state.bus)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  // State from different Redux slices
+  const { user, isAuthenticated } = useSelector((state) => state.auth);
+  const { loading, error, successMessage } = useSelector((state) => state.bus);
+  const { destinations, loading: destinationsLoading } = useSelector((state) => state.destinations);
+
+  // Form state
   const [formData, setFormData] = useState({
     nomComplet: "",
     email: "",
@@ -19,46 +24,55 @@ function BusLocationForm() {
     dateDepart: "",
     dateRetour: "",
     nbPlaces: "1",
-  })
+  });
 
+  // Fetch destinations from the database when the component mounts
+  useEffect(() => {
+    dispatch(fetchDestinations());
+  }, [dispatch]);
+
+  // Handle user authentication and clear previous messages
   useEffect(() => {
     if (!isAuthenticated) {
-      navigate("/login")
+      navigate("/login");
     }
-    dispatch(clearBusError())
-    dispatch(clearBusSuccess())
-  }, [isAuthenticated, navigate, dispatch])
+    dispatch(clearBusError());
+    dispatch(clearBusSuccess());
+  }, [isAuthenticated, navigate, dispatch]);
 
+  // Handle success message after form submission
   useEffect(() => {
     if (successMessage) {
-      alert("Location de bus demandée avec succès ! Votre demande est en attente de validation.")
-      dispatch(clearBusSuccess())
-      navigate("/acceuil")
+      alert("Location de bus demandée avec succès ! Votre demande est en attente de validation.");
+      dispatch(clearBusSuccess());
+      navigate("/acceuil");
     }
-  }, [successMessage, dispatch, navigate])
+  }, [successMessage, dispatch, navigate]);
 
+  // Handle form input changes
   const handleChange = (e) => {
-    const { name, value } = e.target
+    const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
-    }))
-  }
+    }));
+  };
 
+  // Handle form submission
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (!user || !user._id) {
-      alert("Utilisateur non identifié. Veuillez vous reconnecter.")
-      return
+      alert("Utilisateur non identifié. Veuillez vous reconnecter.");
+      return;
     }
 
     const bookingData = {
       ...formData,
       userId: user._id,
       nbPlaces: Number.parseInt(formData.nbPlaces, 10),
-    }
-    dispatch(createBusBooking(bookingData))
-  }
+    };
+    dispatch(createBusBooking(bookingData));
+  };
 
   return (
     <div className="form-container">
@@ -72,7 +86,7 @@ function BusLocationForm() {
           <p>Remplissez les détails de votre voyage pour obtenir une location de bus personnalisée</p>
         </div>
       </div>
-      
+
       <form className="bus-location-form" onSubmit={handleSubmit}>
         <div className="form-row">
           <div className="form-group">
@@ -89,7 +103,7 @@ function BusLocationForm() {
               placeholder="Jean Dupont"
             />
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="email">
               <span className="label-icon">✉️</span> Email de contact
@@ -105,7 +119,7 @@ function BusLocationForm() {
             />
           </div>
         </div>
-        
+
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="telephone">
@@ -121,38 +135,41 @@ function BusLocationForm() {
               placeholder="0612345678"
             />
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="destination">
               <span className="label-icon">📍</span> Destination
             </label>
-            <select 
-              id="destination" 
-              name="destination" 
-              value={formData.destination} 
-              onChange={handleChange} 
+            <select
+              id="destination"
+              name="destination"
+              value={formData.destination}
+              onChange={handleChange}
               required
             >
-              <option value="">Choisissez une destination</option>
-              <option value="Sfax">Sfax</option>
-              <option value="Mednine">Mednine</option>
-              <option value="Djerba">Djerba</option>
-              <option value="Touzeur">Touzeur</option>
+              <option value="">
+                {destinationsLoading ? "Chargement..." : "Choisissez une destination"}
+              </option>
+              {destinations.map((dest) => (
+                <option key={dest._id} value={dest.city}>
+                  {dest.city}
+                </option>
+              ))}
               <option value="Autre">Autre (à préciser)</option>
             </select>
           </div>
         </div>
-        
+
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="typeDuBus">
               <span className="label-icon">🚌</span> Type du bus
             </label>
-            <select 
-              id="typeDuBus" 
-              name="typeDuBus" 
-              value={formData.typeDuBus} 
-              onChange={handleChange} 
+            <select
+              id="typeDuBus"
+              name="typeDuBus"
+              value={formData.typeDuBus}
+              onChange={handleChange}
               required
             >
               <option value="">Choisissez le type du bus</option>
@@ -160,18 +177,18 @@ function BusLocationForm() {
               <option value="simple">Bus Normal (Simple)</option>
             </select>
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="nbPlaces">
               <span className="label-icon">👥</span> Nombre de places
             </label>
             <div className="number-input-container">
-              <button 
-                type="button" 
-                className="number-btn" 
+              <button
+                type="button"
+                className="number-btn"
                 onClick={() => setFormData(prev => ({
-                  ...prev, 
-                  nbPlaces: Math.max(1, parseInt(prev.nbPlaces) - 1)
+                  ...prev,
+                  nbPlaces: Math.max(1, parseInt(prev.nbPlaces) - 1).toString()
                 }))}
               >
                 -
@@ -187,12 +204,12 @@ function BusLocationForm() {
                 required
                 className="number-input"
               />
-              <button 
-                type="button" 
-                className="number-btn" 
+              <button
+                type="button"
+                className="number-btn"
                 onClick={() => setFormData(prev => ({
-                  ...prev, 
-                  nbPlaces: Math.min(50, parseInt(prev.nbPlaces) + 1)
+                  ...prev,
+                  nbPlaces: Math.min(50, parseInt(prev.nbPlaces) + 1).toString()
                 }))}
               >
                 +
@@ -200,7 +217,7 @@ function BusLocationForm() {
             </div>
           </div>
         </div>
-        
+
         <div className="form-row">
           <div className="form-group">
             <label htmlFor="dateDepart">
@@ -215,7 +232,7 @@ function BusLocationForm() {
               required
             />
           </div>
-          
+
           <div className="form-group">
             <label htmlFor="dateRetour">
               <span className="label-icon">⏱️</span> Date et heure de retour
@@ -236,23 +253,22 @@ function BusLocationForm() {
             <span className="error-icon">⚠️</span> {error}
           </div>
         )}
-        <div style={{ display: 'flex', justifyContent: 'center', alignItems: "center"}}>
+
+        <div style={{ display: 'flex', justifyContent: 'center', alignItems: "center" }}>
           <button type="submit" className="submit-button" disabled={loading}>
             {loading ? (
               <div className="loading-spinner"></div>
             ) : (
               <>
-                <span className="submit-icon">🚌</span> 
+                <span className="submit-icon">🚌</span>
                 Demander la location
               </>
             )}
           </button>
         </div>
-
-        
       </form>
     </div>
-  )
+  );
 }
 
-export default BusLocationForm
+export default BusLocationForm;

@@ -12,6 +12,7 @@ connect();
 
 app.use('/user', require('./routes/user'))
 app.use('/book', require('./routes/Bus'))
+app.use('/destination', require('./routes/destination'))
 app.get('/', (req, res) => res.send("working"))
 
 app.listen(2000, () => {
