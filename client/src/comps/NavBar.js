@@ -13,7 +13,7 @@ function NavBar() {
     }
   return (
     <header className="navbar">
-          <div className="logo-text">SOTREGAMES</div>
+          <div style={{ color: 'white', fontSize: '1.8rem', fontWeight: '800', letterSpacing: '3px'}}>SOTREGAMES</div>
           <nav>
             <ul>
               <li>
