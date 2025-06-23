@@ -2,7 +2,7 @@
 :root {
   --primary: #2563eb;       /* Vibrant blue */
   --primary-dark: #1d4ed8;  /* Darker blue */
-  --secondary: #f59e0b;     /* Warm amber */
+  --secondary: white;     /* Warm amber */
   --light: #f8fafc;         /* Light background */
   --dark: #0f172a;          /* Dark text */
   --gray: #64748b;          /* Secondary text */
