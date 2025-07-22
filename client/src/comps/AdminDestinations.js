@@ -1,4 +1,4 @@
-// AdminDestinations.js
+
 "use client"
 
 import { useEffect, useState } from "react"
@@ -7,8 +7,8 @@ import {
   fetchDestinations,
   addDestination,
   deleteDestination,
-} from "../redux/slices/destinationsSlice" // Adjust path as needed
-import './AdminDestinations.css' // Import the new CSS file
+} from "../redux/slices/destinationsSlice" 
+import './AdminDestinations.css' 
 
 const AdminDestinations = () => {
   const dispatch = useDispatch()
