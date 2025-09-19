@@ -1,18 +1,18 @@
-/* Modernized CSS - Clean & Professional Design */
+
 :root {
-  --primary: #2563eb;       /* Vibrant blue */
-  --primary-dark: #1d4ed8;  /* Darker blue */
-  --secondary: white;     /* Warm amber */
-  --light: #f8fafc;         /* Light background */
-  --dark: #0f172a;          /* Dark text */
-  --gray: #64748b;          /* Secondary text */
-  --card-bg: #ffffff;       /* Card background */
-  --border: #e2e8f0;        /* Border color */
+  --primary: #2563eb;      
+  --primary-dark: #1d4ed8;  
+  --secondary: white;    
+  --light: #f8fafc;         
+  --dark: #0f172a;      
+  --gray: #64748b;          
+  --card-bg: #ffffff;      
+  --border: #e2e8f0;       
   --shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
   --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 }
 
-/* Modern Typography & Base Styles */
+
 body {
   margin: 0;
   font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
@@ -23,7 +23,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Modern Navbar */
+
 .navbar {
   display: flex;
   align-items: center;
@@ -48,7 +48,7 @@ body {
   background:linear-gradient(45deg, #2563eb, #1d4ed8);
   -webkit-text-fill-color: transparent;
 }
-/* Navigation Items */
+
 .navbar nav ul {
   list-style: none;
   display: flex;
@@ -86,7 +86,7 @@ body {
   font-family: inherit;
 }
 
-/* Button Styles */
+
 .login-button {
   background-color: var(--secondary);
   color: var(--dark);
@@ -112,7 +112,7 @@ body {
   border-color: transparent;
 }
 
-/* Main Content Section */
+
 .main-section {
   margin: 5rem auto;
   max-width: 900px;
@@ -148,7 +148,7 @@ body {
   line-height: 1.7;
 }
 
-/* Action Cards */
+
 .action-group {
   display: flex;
   flex-direction: column;
@@ -193,7 +193,7 @@ body {
   letter-spacing: -0.3px;
 }
 
-/* Action Links */
+
 .action-link {
   display: inline-flex;
   align-items: center;
@@ -219,7 +219,7 @@ body {
   box-shadow: 0 6px 15px rgba(37, 99, 235, 0.3);
 }
 
-/* Footer */
+
 .footer {
   text-align: center;
   padding: 2.5rem;
@@ -230,7 +230,7 @@ body {
   border-top: 1px solid var(--border);
 }
 
-/* Responsive Adjustments */
+
 @media (max-width: 768px) {
   .navbar {
     padding: 1rem 5%;
