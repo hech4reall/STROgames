@@ -1,26 +1,26 @@
-/* General styles for auth pages (Login, SignUp) */
+
 .auth-container {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
-  background-color: #f0f4f8; /* Light blue-gray background */
+  background-color: #f0f4f8; 
 }
 
 .auth-navbar {
   display: flex;
   align-items: center;
-  background-color: #0d47a1; /* Consistent navbar blue */
+  background-color: #0d47a1;
   color: white;
   padding: 1rem 2.5rem;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .auth-navbar .logo-text {
-  /* Ensure logo text styling is applied */
+
   font-size: 1.8rem;
   font-weight: bold;
   letter-spacing: 1px;
-  color: #ffca28; /* Accent color for logo */
+  color: #ffca28;
   text-decoration: none;
 }
 
@@ -35,7 +35,7 @@
 
 .auth-form-wrapper h1 {
   text-align: center;
-  color: #1e3a5f; /* Darker blue for heading */
+  color: #1e3a5f; 
   margin-bottom: 2rem;
   font-size: 2rem;
   font-weight: 600;
@@ -46,62 +46,62 @@
   max-width: 400px;
   width: 100%;
   margin: 0 auto;
-  padding: 2.5rem 2rem; /* Increased padding */
-  border-radius: 12px; /* More rounded corners */
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); /* Softer shadow */
+  padding: 2.5rem 2rem; 
+  border-radius: 12px; 
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
   display: flex;
   flex-direction: column;
-  gap: 1.5rem; /* Increased gap between form groups */
+  gap: 1.5rem; 
 }
 
 .form-group {
-  /* Re-styling form-group for auth forms */
+
   display: flex;
   flex-direction: column;
-  gap: 0.5rem; /* Space between label and input */
+  gap: 0.5rem;
 }
 
 .form-group label {
-  font-size: 0.95rem; /* Slightly smaller label */
-  color: #334155; /* Dark gray for labels */
+  font-size: 0.95rem;
+  color: #334155; 
   font-weight: 500;
 }
 
 .form-group input[type="text"],
 .form-group input[type="email"],
 .form-group input[type="password"] {
-  padding: 0.8rem 1rem; /* Comfortable padding */
-  border: 1px solid #cbd5e1; /* Lighter border */
+  padding: 0.8rem 1rem;
+  border: 1px solid #cbd5e1; 
   border-radius: 6px;
   font-size: 1rem;
-  background-color: #f8fafc; /* Very light background for inputs */
+  background-color: #f8fafc;
   transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
 .form-group input[type="text"]:focus,
 .form-group input[type="email"]:focus,
 .form-group input[type="password"]:focus {
-  border-color: #2563eb; /* Blue border on focus */
+  border-color: #2563eb; 
   outline: none;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2); /* Focus ring */
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
 }
 
 .auth-button {
-  /* Specific button styling for auth forms */
-  background-color: #1e88e5; /* Primary blue for button */
+  
+  background-color: #1e88e5; 
   color: white;
   border: none;
   border-radius: 6px;
-  padding: 0.9rem 0; /* Comfortable padding */
+  padding: 0.9rem 0;
   font-size: 1.05rem;
   font-weight: 600;
   cursor: pointer;
-  margin-top: 1rem; /* Space above button */
+  margin-top: 1rem; 
   transition: background-color 0.2s ease-in-out;
 }
 
 .auth-button:hover:not(:disabled) {
-  background-color: #1572c3; /* Darker blue on hover */
+  background-color: #1572c3;
 }
 
 .auth-button:disabled {
@@ -110,7 +110,7 @@
 }
 
 .error-message {
-  color: #d32f2f; /* Red for errors */
+  color: #d32f2f;
   background-color: #ffebee;
   border: 1px solid #ef9a9a;
   padding: 0.8rem;
@@ -122,12 +122,12 @@
 .auth-switch-link {
   text-align: center;
   margin-top: 1.5rem;
-  color: #475569; /* Gray for link text */
+  color: #475569;
   font-size: 0.95rem;
 }
 
 .auth-switch-link a {
-  color: #1e88e5; /* Blue for link */
+  color: #1e88e5; 
   text-decoration: none;
   font-weight: 500;
 }
@@ -135,3 +135,4 @@
 .auth-switch-link a:hover {
   text-decoration: underline;
 }
+
