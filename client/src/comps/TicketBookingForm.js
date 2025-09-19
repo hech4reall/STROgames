@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // For navigation
-import './stylesp.css'; // Assuming stylesp.css is in src/comps
+import { useNavigate } from 'react-router-dom'; 
+import './stylesp.css';
 
 function TicketBookingForm({ destination }) {
   const navigate = useNavigate();
@@ -24,7 +24,7 @@ function TicketBookingForm({ destination }) {
     e.preventDefault();
     console.log(`Réservation de ticket pour ${destination}:`, formData);
 
-    // Encode parameters and navigate to reservation confirmation page
+   
     const params = new URLSearchParams(formData).toString();
     navigate(`/reservation?${params}`);
   };
