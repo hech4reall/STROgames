@@ -1,5 +1,5 @@
 import React from 'react';
-import './Contact.css'; // Import the CSS file
+import './Contact.css';
 import { Link, useNavigate } from "react-router-dom"
 import { logout } from "../redux/slices/authSlice"
 import { useSelector, useDispatch } from "react-redux"
