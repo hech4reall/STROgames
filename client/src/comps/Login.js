@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { loginUser, clearError } from "../redux/slices/authSlice" // Corrected path
+import { loginUser, clearError } from "../redux/slices/authSlice" 
 import "./compte.css"
 
 function Login() {
@@ -13,7 +13,7 @@ function Login() {
   const { loading, error, isAuthenticated, user } = useSelector((state) => state.auth)
 
   useEffect(() => {
-    // Clear previous errors when component mounts or email/password changes
+   
     dispatch(clearError())
   }, [dispatch])
 
