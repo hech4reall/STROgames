@@ -1,4 +1,4 @@
-/* Modern User Profile CSS */
+
 :root {
   --primary: #2563eb;
   --primary-dark: #1d4ed8;
@@ -328,7 +328,7 @@
   to { transform: rotate(360deg); }
 }
 
-/* Responsive Adjustments */
+
 @media (max-width: 768px) {
   .user-profile-container {
     padding: 1.5rem;
