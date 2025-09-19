@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom'; // For accessing URL query params
-import './reservation.css'; // Assuming reservation.css is in src/comps
+import { useLocation } from 'react-router-dom'; 
+import './reservation.css'; 
 
 function ReservationConfirm() {
   const location = useLocation();
@@ -15,10 +15,10 @@ function ReservationConfirm() {
       date: params.get('date'),
       nbplaces: params.get('nbplaces'),
     });
-  }, [location.search]); // Re-run effect if URL search params change
+  }, [location.search]); 
 
   const handlePrint = () => {
-    window.print(); // Triggers browser's print dialog
+    window.print();
   };
 
   return (
@@ -30,7 +30,7 @@ function ReservationConfirm() {
         <li><strong>Type du bus :</strong> {reservationDetails.type || ''}</li>
         <li><strong>Date de départ :</strong> {reservationDetails.date || ''}</li>
         <li><strong>Nombre de places :</strong> {reservationDetails.nbplaces || ''}</li>
-        <img src="/download.png" alt="QR Code or Confirmation Image" width="200" height="150" /> {/* Relative path from public folder */}
+        <img src="/download.png" alt="QR Code or Confirmation Image" width="200" height="150" /> {}
         <div>
           <button type="button" onClick={handlePrint}>imprimer</button> {/* Changed to type="button" */}
         </div>
