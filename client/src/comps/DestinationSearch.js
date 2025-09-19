@@ -10,9 +10,9 @@ function DestinationSearch() {
 
   const handleSearchClick = () => {
     if (selectedDestination) {
-      navigate(`/${selectedDestination}`); // Navigate to e.g., /sfax
+      navigate(`/${selectedDestination}`); 
     } else {
-      alert('Veuillez choisir une destination.'); // Or show a more elegant error
+      alert('Veuillez choisir une destination.'); 
     }
   };
 
@@ -22,7 +22,7 @@ function DestinationSearch() {
         <div className="logo">SOTREGAMES</div>
         <nav>
           <ul>
-            <li><Link to="/acceuil">🚆 Voyager</Link></li> {/* Changed to acceuil from empty link */}
+            <li><Link to="/acceuil">🚆 Voyager</Link></li> {}
             <li><Link to="/offre">📄 Offres</Link></li>
             <li><Link to="/compte">👤 Compte</Link></li>
           </ul>
